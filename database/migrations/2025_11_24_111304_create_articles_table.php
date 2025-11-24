@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('content');
             $table->string('image_path')->nullable();//L'image
-            $table->bollean('is_published')->default(false);//Statue
+            $table->boolean('is_published')->default(false);//Statue
             $table->timestamps();
         });
     }

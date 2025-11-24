@@ -6,14 +6,17 @@ use App\Models\Article;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 
+
 class ArticleController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the articles.
      */
     public function index()
     {
-        //
+        //On recupère tous les articles, du plus récent au plus vieux .
+        $articles = Article::where('user_id', auth()->id())->orderBy('created_at','desc')->paginate(10);
+        return view('articles.index', compact('articles'));
     }
 
     /**
@@ -21,7 +24,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('articles.create');
     }
 
     /**
