@@ -27,6 +27,11 @@ class Article extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     protected static function boot(){
         parent::boot();
         //Avant de créer un article , on va génerer le slug

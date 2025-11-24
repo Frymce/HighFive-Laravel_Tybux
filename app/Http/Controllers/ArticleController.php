@@ -42,7 +42,7 @@ class ArticleController extends Controller
             $path = $request->file('image')->store('articles', 'public');
             $data['image_path'] = $path;
         }
-        
+
         //3. Création de l"article vie la relation  
         //Cela remplit automatiquement le user_id avec l"ID de l'utilisateur authentifié,
         $article = $request->user()->articles()->create($data);
@@ -56,7 +56,8 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        // dd($article);
+        return view('articles.show', compact('article'));
     }
 
     /**
