@@ -1,3 +1,4 @@
+
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
@@ -13,7 +14,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -45,6 +46,19 @@
                     @endif
                 </div>
             @endif
+        </div>
+
+        {{-- Prévisualisation Avatar --}}
+        @if ($user->avatar)
+           <div class="mt-2">
+            <img src="{{ asset('storage/' . $user->avatar ) }}" alt="{{'Profile de '. $user->name }}" >
+           </div>
+        @endif
+
+        {{-- Avatar Uploard--}}
+        <div class="">
+            <x-input-label for="avatar" :value="__('Avatar')" class="mt-1 block text-gray-900 text-sm border border-gray-300 rounded-lg cursor-pointer bg-green focus:outline-one"/>
+            <input id="avatar" name="avatar" type="file" />
         </div>
 
         <div class="flex items-center gap-4">
